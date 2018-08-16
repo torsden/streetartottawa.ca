@@ -6,23 +6,23 @@
     height: 30%;
 }
 
-.recentImagesBox{
+.recentArtContainer{
     display: flex;
     justify-content: space-between;
 }
 
-.recentImage {
+.image {
     width: 80%;
     height: 70%;
     transition: transform .2s; 
     padding:20px; 
 }
 
-.recentImage:hover {
+.image:hover {
     transform: scale(1.1); 
 }
 
-.imageBox {
+.artImageContainer {
     text-align: center;
 } 
 
