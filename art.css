@@ -15,11 +15,11 @@
     grid-row-end: row1;
 }
 
-.recentArtContainer{
+.mainArtContainer{
     grid-column-start: col1;
-    grid-column-end: col2;
+    grid-column-end: rightEdge;
     grid-row-start: row1;
-    grid-row-end: row2;
+    grid-row-end: bottomEdge;
     display: flex;
     justify-content: space-between;
 }
@@ -74,11 +74,4 @@
 
 .menuItem:visited{
     color: white;
-}
-
-.site-footer{
-    grid-column-start: leftEdge;
-    grid-column-end: end;
-    grid-row-start: bottomEdge;
-    grid-row-end: end;
 }
