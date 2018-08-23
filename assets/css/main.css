@@ -3,8 +3,8 @@
     grid-template-columns: [leftEdge] 40px [col1] 1fr [col2] 1fr [rightEdge] 40px [end];
     grid-template-rows: [topEdge] 40px [row1] 1fr [row2] 1fr [bottomEdge] 40px [end];
 }
-
 .site-header {
+    z-index: 100;
     border-top: 5px solid #424242;
     border-bottom: 1px solid #e8e8e8;
     min-height: 55.95px;
@@ -14,31 +14,15 @@
     grid-row-start: topEdge;
     grid-row-end: row1;
 }
-
-.mainArtContainer{
-    grid-column-start: col1;
-    grid-column-end: rightEdge;
-    grid-row-start: row1;
-    grid-row-end: bottomEdge;
-    display: flex;
-    justify-content: space-between;
-}
-
-.image {
-    width: 80%;
-    height: 70%;
-    transition: transform .2s; 
-    padding:20px; 
-}
-
-.image:hover {
+.landscape:hover {
     transform: scale(1.1); 
 }
-
+.portrait:hover {
+    transform: scale(1.1); 
+}
 .artImageContainer {
     text-align: center;
 } 
-
 .menuBar {
     list-style-type: none;
     margin: 0;
@@ -49,7 +33,6 @@
     top:0;
     width: 100%;
 }
-
 .menuItem {
     float: left;
     display: block;
@@ -58,20 +41,17 @@
     padding: 15px;
     text-decoration: none;
 }
-
 .menuLogo {
     float: right;
     display: block;
     color: white;
     text-align: center;
     padding: 15px;
-    text-decoration: none;
+    text-decoration: none; 
 }
-
 .menuItem:hover {
     color: white;
 }
-
 .menuItem:visited{
     color: white;
 }
@@ -91,9 +71,52 @@
 .wrapper li.landscape {
     grid-column-end: span 2;
 }
+.wrapper li.landscapeText{
+    grid-column-end: span 2;
+}
 .wrapper li img {
    display: block;
    object-fit: cover;
    width: 100%;
    height: 100%;
+}
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: black;
+    text-align: center;
+}
+.mediaTag {
+    float: left;
+    margin-left: 2%;
+    width: 10%;
+    padding: 5px;
+    text-decoration: none;
+    text-align: left;
+}
+.footerText{
+    float: right;
+    margin-right: 5%;
+    width: 60%;
+    padding: 10px;
+    text-align: justify;
+}
+a:link {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+.artButton{
+    position: relative;
+    align-self: center;
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    color: white;
+    background-color: rgb(23, 50, 68);
 }
