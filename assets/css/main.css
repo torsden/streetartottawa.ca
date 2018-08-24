@@ -31,7 +31,8 @@
     background-color: black;
     position: fixed;
     top:0;
-    width: 100%;
+    left: 0;
+     width: 100%;
 }
 .menuItem {
     float: left;
@@ -40,6 +41,7 @@
     text-align: center;
     padding: 15px;
     text-decoration: none;
+    font-family: 'Oswald', sans-serif;
 }
 .menuLogo {
     float: right;
@@ -47,14 +49,14 @@
     color: white;
     text-align: center;
     padding: 15px;
-    text-decoration: none; 
-}
-.menuItem:hover {
-    color: white;
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    padding-right: 40px;
 }
 .menuItem:visited{
     color: white;
 }
+
 .wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
