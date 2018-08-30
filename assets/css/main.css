@@ -4,7 +4,7 @@
     grid-template-rows: [topEdge] 40px [row1] 1fr [row2] 1fr [bottomEdge] 40px [end];
 }
 .site-header {
-    z-index: 100;
+    z-index: 1;
     border-top: 5px solid #424242;
     border-bottom: 1px solid #e8e8e8;
     min-height: 55.95px;
@@ -24,6 +24,7 @@
     text-align: center;
 } 
 .menuBar {
+    visibility: visible;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -32,6 +33,21 @@
     position: fixed;
     top:0;
     width: 100%;
+    height: 50px;
+    transition: top 0.3s ease-in;
+}
+.hiddenMenuBar {
+    visibility: visible;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    top:-50px;
+    width: 100%;
+    transition: top 0.3s ease-in;
+
 }
 .menuItem {
     float: left;
@@ -45,7 +61,7 @@
     float: right;
     display: block;
     color: white;
-    text-align: center;
+    text-align: justify;
     padding: 15px;
     text-decoration: none; 
 }
@@ -120,3 +136,13 @@ a:hover {
     color: white;
     background-color: rgb(23, 50, 68);
 }
+.recentArtButton{
+    position: relative;
+    align-self: center;
+    display: block;
+    margin: 0 auto;
+    width: 30%;
+    color: white;
+    background-color: rgb(23, 50, 68);
+}
+
