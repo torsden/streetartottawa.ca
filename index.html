@@ -4,18 +4,13 @@ layout: home
 <main class="page-content" aria-label="Content" id="content">
         <div class="">
                 <ul class="wrapper">
-                        <li class="landscape"><img role="link" src="https://instagram.com/p/BlskOh1n-rY/media/?size=l"></li>
-                        <li class="portrait"><img src="https://instagram.com/p/BlsjvJaH7q5/media/?size=l"></li>
-                        <li class="landscapeText"><p class="homePageText">SOme random text to be filled in about street art </p></li>
-                        <li class="landscape"><img src="https://instagram.com/p/BlsiU4QnVhk/media/?size=l"></li>
-                        <li class="landscape"><img src="https://instagram.com/p/Blsjoxcnb6Q/media/?size=l"></li>
-                        <li class="portrait"><img  src="https://instagram.com/p/BlsjHUqnmxW/media/?size=l"></li>
-                        <li class="landscape"><img src="https://instagram.com/p/Blsi6QrnTTT/media/?size=l"></li>
-                </ul>                                      
-                      </div>
-        <br>
-
-                <input type="button" class="artButton" value="All street art" onclick="window.location.href='art.html'" />
-        </div>
+                        {% assign sortedArt = (site.data.artCollection | sort: 'date') %} 
+                        {% for artPiece in sortedArt limit:6 %}
+                                <li class="landscape"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
+                        {% endfor %}
+                  <ul>           
+                  <br>
+                  <input type="button" class="artButton" value="All street art" onclick="window.location.href='art.html'" />
+         </div>
         
 </main>

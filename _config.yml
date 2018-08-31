@@ -16,6 +16,10 @@ header_pages:
   - about.md
   - contact.md
 
+collections:
+  my_collection:
+    output: true
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
