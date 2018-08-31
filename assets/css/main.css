@@ -6,7 +6,6 @@
 .site-header {
     z-index: 100;
     border-top: 5px solid #424242;
-    border-bottom: 1px solid #e8e8e8;
     min-height: 55.95px;
     position: relative;
     grid-column-start: leftEdge;
@@ -50,7 +49,7 @@
     text-align: center;
     padding: 15px;
     text-decoration: none;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Audiowide', cursive;
     padding-right: 40px;
 }
 .menuItem:visited{
@@ -82,6 +81,7 @@
    width: 100%;
    height: 100%;
 }
+
 .footer {
     position: relative;
     left: 0;
