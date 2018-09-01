@@ -4,13 +4,11 @@ layout: home
 <main class="page-content" aria-label="Content" id="content">
         <div class="">
                 <ul class="wrapper">
-                        {% assign sortedArt = (site.data.artCollection | sort: 'date') %} 
+                        {% assign sortedArt = (site.data.artCollection | sort: 'date' | reverse) %} 
                         {% for artPiece in sortedArt limit:6 %}
                                 <li class="landscape"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
                         {% endfor %}
-                  <ul>           
-                  <br>
-                  <input type="button" class="artButton" value="All street art" onclick="window.location.href='art.html'" />
-         </div>
-        
+                </ul>           
+                <input type="button" class="artButton" value="See All" onclick="window.location.href='art.html'" />
+        </div>
 </main>
