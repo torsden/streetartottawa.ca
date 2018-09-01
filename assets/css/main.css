@@ -14,8 +14,9 @@
     grid-row-end: row1;
 }
 .landscape:hover {
-    transform: scale(1.1); 
-}
+    transition: transform 0.1s ease-in;
+    transform: scale(1.1);
+    }
 .portrait:hover {
     transform: scale(1.1); 
 }
@@ -56,7 +57,8 @@
     text-align: center;
     padding: 15px;
     text-decoration: none;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 .menuLogo {
     float: right;
@@ -65,8 +67,10 @@
     text-align: justify;
     padding: 15px;
     text-decoration: none;
-    font-family: 'Audiowide', cursive;
+    font-family: 'Roboto', sans-serif;
     padding-right: 40px;
+    font-size: 16px;
+
 }
 .menuItem:visited{
     color: white;
@@ -99,13 +103,28 @@
 }
 
 .footer {
-    position: relative;
+    position: fixed;
+    margin: 0;
     left: 0;
     bottom: 0;
+    padding: 0;
     width: 100%;
-    color: black;
+    background-color: black;
+    color: white;
     text-align: center;
+    height: 50px;
 }
+
+.footerIcon {
+    float: left;
+    display: block;
+    color: white;
+    text-align: left;
+    padding: 15px;
+    text-decoration: none;
+    padding-right: 40px;
+}
+
 .mediaTag {
     float: left;
     margin-left: 2%;
@@ -122,19 +141,23 @@
     text-align: justify;
 }
 a:link {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 a:hover {
-    color: blue;
-    text-decoration: underline;
+    color: grey;
+    text-decoration: none;
+}
+a:visited {
+    color: white;
+    text-decoration: none;
 }
 .artButton{
     position: relative;
     align-self: center;
     display: block;
     margin: 0 auto;
-    width: 30%;
+    width: 20%;
     color: white;
     background-color: rgb(23, 50, 68);
 }
