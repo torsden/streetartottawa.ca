@@ -1,14 +1,14 @@
 --- 
 layout: home 
 --- 
-<main class="page-content" aria-label="Content" id="content">
+<main class="page-content" aria-label="Content">
         <div class="">
                 <ul class="wrapper">
-                        {% assign sortedArt = (site.data.artCollection | sort: 'date' | reverse) %} 
+                        {% assign sortedArt = site.data.artCollection | sort: 'imageTakenDate' | reverse %} 
                         {% for artPiece in sortedArt limit:6 %}
                                 <li class="landscape"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
                         {% endfor %}
-                </ul>           
-                <input type="button" class="artButton" value="See All" onclick="window.location.href='art.html'" />
-        </div>
+                  <ul>
+        </div>         
+        <input type="button" class="artButton" value="Explore more" onclick="window.location.href='art.html'" /> 
 </main>

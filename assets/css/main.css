@@ -5,7 +5,6 @@
 }
 .site-header {
     z-index: 1;
-    border-top: 5px solid #424242;
     min-height: 55.95px;
     position: relative;
     grid-column-start: leftEdge;
@@ -15,10 +14,11 @@
 }
 .landscape:hover {
     transition: transform 0.1s ease-in;
-    transform: scale(1.1);
+    transform: scale(1.05);
     }
 .portrait:hover {
-    transform: scale(1.1); 
+    transition: transform 0.1s ease-in;
+    transform: scale(1.05); 
 }
 .artImageContainer {
     text-align: center;
@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: black;
+    background-image: linear-gradient(to right, #7F48D9 , #a8eb12);
     position: fixed;
     top:0;
     left: 0;
@@ -43,7 +43,8 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: black;
+    background-image: linear-gradient(to right, #7F48D9 , #a8eb12);
+    opacity: 0.5;
     position: fixed;
     top:-50px;
     width: 100%;
@@ -53,7 +54,17 @@
 .menuItem {
     float: left;
     display: block;
-    color: white;
+    color: black;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+}
+.menuItem:hover {
+    float: left;
+    display: block;
+    color: black;
     text-align: center;
     padding: 15px;
     text-decoration: none;
@@ -63,19 +74,18 @@
 .menuLogo {
     float: right;
     display: block;
-    color: white;
+    color: black;
     text-align: justify;
     padding: 15px;
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
+    font-weight: bold;
     padding-right: 40px;
     font-size: 16px;
-
 }
 .menuItem:visited{
-    color: white;
+    color: black;
 }
-
 .wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -101,30 +111,28 @@
    width: 100%;
    height: 100%;
 }
-
 .footer {
+    z-index: 1;
     position: fixed;
-    margin: 0;
     left: 0;
     bottom: 0;
     padding: 0;
     width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
-    height: 50px;
-}
+    background-color: transparent;
 
+    text-align: center;
+    height: 30px;
+}
 .footerIcon {
     float: left;
     display: block;
-    color: white;
+    color: black;
+    font-size: 25px;
+    margin: auto 0 auto 0;
     text-align: left;
-    padding: 15px;
+    padding: 0 0 0 10px;
     text-decoration: none;
-    padding-right: 40px;
 }
-
 .mediaTag {
     float: left;
     margin-left: 2%;
@@ -133,41 +141,30 @@
     text-decoration: none;
     text-align: left;
 }
-.footerText{
-    float: right;
-    margin-right: 5%;
-    width: 60%;
-    padding: 10px;
-    text-align: justify;
-}
 a:link {
-    color: white;
-    text-decoration: none;
-}
-a:hover {
-    color: grey;
+    color: black;
     text-decoration: none;
 }
 a:visited {
-    color: white;
+    color: black;
     text-decoration: none;
 }
-.artButton{
-    position: relative;
+.artButton {
+    position: sticky;
     align-self: center;
     display: block;
     margin: 0 auto;
-    width: 20%;
-    color: white;
-    background-color: rgb(23, 50, 68);
-}
-.recentArtButton{
-    position: relative;
-    align-self: center;
-    display: block;
-    margin: 0 auto;
+    text-align: center;
     width: 30%;
     color: white;
-    background-color: rgb(23, 50, 68);
+    background-color: rgb(109, 32, 197);
 }
+body {
+    background-image: linear-gradient(to right top, #7F48D9 , #9C89B3 , white , #FFF6FF , #a8eb12);
+}
+.allArt {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
 

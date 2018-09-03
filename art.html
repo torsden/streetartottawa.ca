@@ -3,9 +3,9 @@ layout: default
 ---
 
 <div class="">
-    <h3 class="typeOfArt">All Art</h3>
+    <h3 class="allArt">All Art</h3>
     <ul class="wrapper">    
-        {% assign sortedArt = (site.data.artCollection | sort: 'date' | reverse) %} 
+        {% assign sortedArt = site.data.artCollection | sort: 'date' | reverse %} 
         {% for artPiece in sortedArt %}
             <li class="landscape"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
         {% endfor %}
