@@ -3,9 +3,9 @@
   <head>
     {% include header.html %}
   </head>
-  <body>
+  
+  <body onload="registerEvents()">
     {% include navbar.html %}
-
     {{ content }}   
      {% include footer.html %}
   </body>

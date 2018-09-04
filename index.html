@@ -6,7 +6,7 @@ layout: home
                 <ul class="wrapper">
                         {% assign sortedArt = site.data.artCollection | sort: 'imageTakenDate' | reverse %} 
                         {% for artPiece in sortedArt limit:6 %}
-                                <li class="landscape"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
+                                <li class="landscape imageContainer" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l"></li>
                         {% endfor %}
                   <ul>
         </div>         
