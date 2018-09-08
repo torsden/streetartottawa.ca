@@ -6,6 +6,14 @@
 <link rel="stylesheet" href="assets/css/main.css"></link>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+<div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <img id="dialogImage" src=""></img>
+      <p>Modal Content, replace with enlarged image</p>
+    </div>
+  </div>
+
 <title>
   {%- if page.title -%}
     {{ page.title | smartify }} · {{ site.title | smartify }}
@@ -13,5 +21,6 @@
     {{ site.title | smartify }} · {{ site.description | smartify }}
   {%- endif -%}
 </title>
+
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/javascript" src="assets/js/default.js"></script>
