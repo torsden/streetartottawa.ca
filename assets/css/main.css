@@ -180,10 +180,21 @@ body {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
+    margin: 4% auto;
+    padding: 25px;
     border: 1px solid #888;
-    width: 80%;
+    width: 70%;
+}
+
+#dialogImage {
+    width: 60%;
+    height: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.description{
+    text-align: center;
 }
 
 .close {
@@ -199,3 +210,14 @@ body {
     text-decoration: none;
     cursor: pointer;
 }
+
+
+.artDescription {
+    float: right;
+    
+    }
+.artAttributeName {
+float: left;
+padding-right: 5px;
+}
+
