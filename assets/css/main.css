@@ -29,7 +29,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: linear-gradient(to right, #7F48D9 , #a8eb12);
+    background-color: whitesmoke;
     position: fixed;
     top:0;
     left: 0;
@@ -43,7 +43,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-image: linear-gradient(to right, #7F48D9 , #a8eb12);
+    background-color: whitesmoke;
     opacity: 0.5;
     position: fixed;
     top:-50px;
@@ -59,7 +59,7 @@
     padding: 15px;
     text-decoration: none;
     font-weight: bold;
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Asap', sans-serif;
 }
 .menuItem:hover {
     float: left;
@@ -68,7 +68,17 @@
     text-align: center;
     padding: 15px;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Asap', sans-serif;
+    font-size: 16px;
+}
+.menuItem:visited {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    font-family: 'Asap', sans-serif;
     font-size: 16px;
 }
 .menuLogo {
@@ -78,7 +88,7 @@
     text-align: justify;
     padding: 15px;
     text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Asap', sans-serif;
     font-weight: bold;
     padding-right: 40px;
     font-size: 16px;
@@ -88,12 +98,12 @@
 }
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    grid-gap: 23px;
     grid-auto-flow: dense;
     list-style: none;
     margin: 1em auto;
-    padding: 0;
+    padding: 0px;
     max-width: 800px;
 }
 .wrapper li {
@@ -119,7 +129,6 @@
     padding: 0;
     width: 100%;
     background-color: transparent;
-
     text-align: center;
     height: 30px;
 }
@@ -127,7 +136,7 @@
     float: left;
     display: block;
     color: black;
-    font-size: 25px;
+    font-size: 40px;
     margin: auto 0 auto 0;
     text-align: left;
     padding: 0 0 0 10px;
@@ -155,16 +164,19 @@ a:visited {
     display: block;
     margin: 0 auto;
     text-align: center;
-    width: 30%;
     color: white;
-    background-color: rgb(109, 32, 197);
+    background-color: black;
+    font-family: 'Asap', sans-serif;
+    padding: 10px;
+    font-size: 15px;
+
 }
 body {
-    background-image: linear-gradient(to right top, #7F48D9 , #9C89B3 , white , #FFF6FF , #a8eb12);
+    background-image: rgba(245, 245, 245, 0.959);
 }
 .allArt {
     text-align: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Asap', sans-serif;
 }
 .modal {
     display: none;
@@ -193,8 +205,11 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
-.description{
-    text-align: center;
+.artDescription{
+    float: inherit;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-bottom: 15px;
 }
 
 .close {
@@ -202,6 +217,17 @@ body {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding-right: 13px;
+    padding-top: 3px;
+}
+
+.dialogImage {
+    width: 60%;
+    height: 60%;
+    display: block;
+    margin-left: 20px;
+    margin-right: 16px;
+    padding-top: 30px;
 }
 
 .close:hover,
@@ -211,13 +237,4 @@ body {
     cursor: pointer;
 }
 
-
-.artDescription {
-    float: right;
-    
-    }
-.artAttributeName {
-float: left;
-padding-right: 5px;
-}
 
