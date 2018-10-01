@@ -193,7 +193,6 @@ body {
 .modal-content {
     background-color: #fefefe;
     margin: 4% auto;
-    padding: 25px;
     border: 1px solid #888;
     width: 70%;
 }
@@ -237,4 +236,10 @@ body {
     cursor: pointer;
 }
 
-
+.filters{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    padding-left: 40%;
+    font-family: 'Asap', sans-serif;
+}
