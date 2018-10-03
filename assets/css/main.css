@@ -244,3 +244,39 @@ body {
     font-family: 'Asap', sans-serif;
 }
 
+.all .a{
+    display: block;
+}
+
+.alla .a{
+    display: block;
+}
+
+.a {
+    display: none;
+}
+
+.all .b{
+    display: block;
+}
+
+.allb .b{
+    display: block;
+}
+
+.b {
+    display: none;
+}
+
+.all .c{
+    display: block;
+}
+
+.allc .c{
+    display: block;
+}
+
+.c{
+    display: none;
+}
+

@@ -13,7 +13,7 @@ layout: default
 
     <ul class="wrapper">    
         {% assign sortedArt = site.data.artCollection | where: 'area','byward' | sort: 'imageTakenDate' | reverse %} 
-        {% for artPiece in sortedArt %}
+            {% for artPiece in sortedArt %}
             <li class="landscape imageContainer" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
         {% endfor %}
     </ul>

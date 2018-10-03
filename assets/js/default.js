@@ -19,8 +19,33 @@ function handleImgClick (event) {
   
   var modal = document.getElementById('myModal');
   modal.style.display = "block";
+}
 
+function handleSelectorClick (event) {
+  var area = event.currentTarget.className;
+  var elem = document.getElementsByClassName("wrapper")[0];
 
+  if (area == "glebe") {
+    elem.classList.remove("all");
+    elem.classList.remove("allb");
+    elem.classList.remove("allc");
+    elem.classList.add("alla");
+  } 
+  else if (area == "centerTown") {
+    elem.classList.remove("all");
+    elem.classList.remove("alla");
+    elem.classList.remove("allc");
+    elem.classList.add("allb");
+  } 
+  else if (area == "byward") {
+    elem.classList.remove("all");
+    elem.classList.remove("allb");
+    elem.classList.remove("alla");
+    elem.classList.add("allc");
+  }
+    else if (area == "allArt") {
+    elem.classList.add("all");
+  }
 }
 
 function registerEvents () {

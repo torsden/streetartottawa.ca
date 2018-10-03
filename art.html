@@ -3,18 +3,26 @@ layout: default
 ---
 
 <div class="">
-    <h3 class="allArt">All Art</h3>
+    <h3 class="allArt" onclick="handleSelectorClick(event)">All Art</h3>
 
     <div class="filters">
-        <a href="byward.html"><h5>Byward Market</h5></a>
-        <a href="centerTown.html"><h5>Center Town</h5></a>
-        <a href="glebe.html"><h5>Glebe</h5></a>
+        <p class="byward" onclick="handleSelectorClick(event)" >Byward Market</p>
+        <p class="centerTown" onclick="handleSelectorClick(event)" >Center Town</p>
+        <p class="glebe" onclick="handleSelectorClick(event)"  >Glebe</p>
     </div>
 
-    <ul class="wrapper">    
-        {% assign sortedArt = site.data.artCollection | sort: 'imageTakenDate' | reverse %} 
-            {% for artPiece in sortedArt %}
-            <li class="landscape imageContainer" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
-        {% endfor %}
+    <ul class="wrapper all">
+            {% assign sortedArt = site.data.artCollection | where: 'area','byward' | sort: 'imageTakenDate' | reverse %} 
+                {% for artPiece in sortedArt %}
+                <li class="landscape imageContainer a" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
+            {% endfor %}
+            {% assign sortedArt = site.data.artCollection | where: 'area','centerTown' | sort: 'imageTakenDate' | reverse %} 
+                {% for artPiece in sortedArt %}
+                <li class="landscape imageContainer b" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
+            {% endfor %}
+            {% assign sortedArt = site.data.artCollection | where: 'area','glebe' | sort: 'imageTakenDate' | reverse %} 
+                {% for artPiece in sortedArt %}
+                <li class="landscape imageContainerc c" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
+            {% endfor %}
     </ul>
 </div>
