@@ -66,3 +66,88 @@ function registerEvents () {
   // register handle image click here
 }
 
+var artData;
+var queriedData;
+var picId =[];
+var area =[];
+var imageTakenDate =[];
+
+function getData () {
+  axios.get('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents/artCollection')
+  .then(function(response){
+    console.log(response.data); 
+    console.log(response.status); 
+    artData = response.data;
+  }); 
+  return artData;
+}
+
+function showData (artData) {
+  var imgCollectionDiv = document.getElementById('imgCollection');
+  for(var i in artData){
+    var element = artData[i]
+    for(key in element){
+      var picData = element[key];
+      for(subKey in picData){
+        if(subKey == "fields"){
+          var finaldata = picData[subKey];
+          picId = finaldata.id;
+          var res = picId.stringValue;
+          var artImage = document.createElement("img");
+          artImage.src = "https://instagram.com/p/" + res + "/media/?size=l";
+          imgCollectionDiv.appendChild(artImage);
+          console.log(res);
+        }
+      }
+    }
+  }
+}
+
+
+function query () {
+  axios.post('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents:runQuery', 
+  { 
+    "structuredQuery": { 
+      "where": { 
+        "fieldFilter": { 
+          "field": { "fieldPath": "area" }, 
+          "op": "EQUAL", 
+          "value": { 
+            "stringValue": "Downtown" } 
+          } 
+        }, 
+        "from": [ { "collectionId": "artCollection" } ] 
+      } 
+    })
+  .then(function (response) {
+    console.log(response.data);
+    queriedData = response.data;
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
+
+function populateHomePage (queriedData) {
+  var imgCollectionDiv = document.getElementById('imgCollection');
+  for(var i in queriedData){
+    var element = queriedData[i]
+    for(key in element){
+      var picData = element[key];
+      for(subKey in picData){
+        if(subKey == "fields"){
+          var finaldata = picData[subKey];
+          picId = finaldata.id;
+          var res = picId.stringValue;
+          var artImage = document.createElement("img");
+          artImage.src = "https://instagram.com/p/" + res + "/media/?size=l";
+          imgCollectionDiv.appendChild(artImage);
+          console.log(res);
+        }
+      }
+    }
+  }
+}
+
+
+

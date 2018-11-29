@@ -3,14 +3,16 @@
 <meta name="description" content="{{ page.description | default: site.description | smartify }}">
 <meta name="author" content="{{ site.authors }}">
 <meta name="generator" content="Jekyll v{{ jekyll.version }}">
-<link rel="stylesheet" href="assets/css/main.css"></link>
+<link rel="stylesheet" href="assets/css/main.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 
 <div id="myModal" class="modal">
     <div class="modal-content">
         <i class="close fa fa-times"></i>
       <!-- <span class="close">&times;</span> -->
-      <img id="dialogImage" src=""></img>
+      <img id="dialogImage" src=""/>
       <div class="artDescription">
         <div class="artAttributeName">Location:</div> 
         <div class="artAttributeValue" id="artPieceArea"></div>
@@ -19,13 +21,16 @@
     </div>
   </div>
 
-<title>
+<title >
   {%- if page.title -%}
     {{ page.title | smartify }} · {{ site.title | smartify }}
   {%- else -%}
     {{ site.title | smartify }} · {{ site.description | smartify }}
   {%- endif -%}
 </title>
+
+<div id="imgCollection"></div>
+
 
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <script type="text/javascript" src="assets/js/default.js"></script>

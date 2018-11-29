@@ -3,7 +3,7 @@
   <head>
     {% include header.html %}
   </head>
-  <body onload="registerEvents()">
+  <body onload="registerEvents(); getData()">
     {% include navbar.html %}
     {{ content }}
     {% include footer.html %}
