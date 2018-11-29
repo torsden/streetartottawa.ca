@@ -1,5 +1,6 @@
 ---
 layout: default
+id: art
 ---
 
 <div class="">
@@ -11,18 +12,7 @@ layout: default
         <p class="glebe" onclick="handleSelectorClick(event)"  >Glebe</p>
     </div>
 
-    <ul class="wrapper all">
-            {% assign sortedArt = site.data.artCollection | where: 'area','byward' | sort: 'imageTakenDate' | reverse %} 
-                {% for artPiece in sortedArt %}
-                <li class="landscape imageContainer a" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
-            {% endfor %}
-            {% assign sortedArt = site.data.artCollection | where: 'area','centerTown' | sort: 'imageTakenDate' | reverse %} 
-                {% for artPiece in sortedArt %}
-                <li class="landscape imageContainer b" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
-            {% endfor %}
-            {% assign sortedArt = site.data.artCollection | where: 'area','glebe' | sort: 'imageTakenDate' | reverse %} 
-                {% for artPiece in sortedArt %}
-                <li class="landscape imageContainerc c" onclick="handleImgClick(event)" id="{{ artPiece.id }}"><img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=m"></li>
-            {% endfor %}
+    <ul id="imgCollection" class="wrapper">
+           
     </ul>
 </div>

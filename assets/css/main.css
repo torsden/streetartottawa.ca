@@ -105,12 +105,15 @@
     margin: 1em auto;
     padding: 0px;
     max-width: 800px;
+    height: 530px;
 }
 .wrapper li {
     border: 1px solid #ccc;
 }
 .wrapper li.landscape {
     grid-column-end: span 2;
+    height: 250px;
+    width: 250px;
 }
 .wrapper li.landscapeText{
     grid-column-end: span 2;

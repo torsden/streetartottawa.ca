@@ -4,21 +4,8 @@ layout: home
 
 <main class="page-content" aria-label="Content">
         <div class="">
-                <ul class="wrapper">
-
-                        {% assign sortedArt = site.data.artCollection | sort: 'imageTakenDate' | reverse %} 
-                        {% for artPiece in sortedArt limit:6 %}
-                                <li class="landscape imageContainer" onclick="handleImgClick(event)" 
-                                id="{{ artPiece.id }}"
-                                data-area="{{ artPiece.area }}">
-                                        <img class="" src="https://instagram.com/p/{{ artPiece.id }}/media/?size=l">
-                                </li>
-                        {% endfor %}
-                <ul>
+                <ul  id="imgCollection" class="wrapper"/>
         </div>         
-<!-- <input type="button" class="artButton" value="GET DATA" onclick="getData()" />  -->
-<input type="button" class="artButton" value="SHOW DATA" onclick="showData(artData)" /> 
-<input type="button" class="artButton" value="QUERY" onclick="query()" /> 
 
 
         <input type="button" class="artButton" value="Explore more" onclick="window.location.href='art.html'" /> 
