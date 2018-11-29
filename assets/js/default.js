@@ -99,7 +99,7 @@ function displayImages (pageId) {
             liElem.onclick = function(event){ handleImgClick(event)};
             liElem.id=imgId;
             var artImage = document.createElement("img");
-            artImage.src = "https://instagram.com/p/" + imgId + "/media/?size=l";
+            artImage.src = "https://instagram.com/p/" + imgId + "/media/?size=m";
             liElem.appendChild(artImage);
             imgCollectionDiv.appendChild(liElem);
           }
