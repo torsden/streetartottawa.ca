@@ -4,7 +4,7 @@
     {% include header.html %}
   </head>
   
-  <body onload="displayImages(); registerEvents();">
+  <body onload="displayImages('{{ page.id }}'); registerEvents();">
       {% include navbar.html %}
       {{ content }}   
       {% include footer.html %}

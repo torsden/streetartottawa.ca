@@ -22,30 +22,31 @@ function handleImgClick (event) {
 }
 
 function handleSelectorClick (event) {
-  var area = event.currentTarget.className;
-  var elem = document.getElementsByClassName("wrapper")[0];
+  var area = event.currentTarget.dataset;
+  var query;
+  if (area.filter === "all") {
+    query = getAllQuery();
+  } else {
+    query = getFilterQuery(area.filter);
+  }
+  
+  createImages(execQuery(query));
+}
 
-  if (area == "glebe") {
-    elem.classList.remove("all");
-    elem.classList.remove("allb");
-    elem.classList.remove("allc");
-    elem.classList.add("alla");
-  } 
-  else if (area == "centerTown") {
-    elem.classList.remove("all");
-    elem.classList.remove("alla");
-    elem.classList.remove("allc");
-    elem.classList.add("allb");
-  } 
-  else if (area == "byward") {
-    elem.classList.remove("all");
-    elem.classList.remove("allb");
-    elem.classList.remove("alla");
-    elem.classList.add("allc");
-  }
-    else if (area == "allArt") {
-    elem.classList.add("all");
-  }
+function getFilterQuery(filter) {
+ return { 
+    "structuredQuery": { 
+      "where": { 
+        "fieldFilter": { 
+          "field": { "fieldPath": "area" }, 
+          "op": "EQUAL", 
+          "value": { 
+            "stringValue": filter } 
+          } 
+        }, 
+        "from": [ { "collectionId": "artCollection" } ] 
+      } 
+    };
 }
 
 function registerEvents () {
@@ -68,15 +69,8 @@ var queriedData;
 var area =[];
 var imageTakenDate =[];
 
-function queryAll () {
-  return axios.get('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents/artCollection')
-  .then(function(response){
-    return response.data;
-  }); 
-}
-
 function displayImages (pageId) {
-  
+ 
   var promise;
 
   if(pageId === "art") {
@@ -84,28 +78,31 @@ function displayImages (pageId) {
   } else {
     promise = queryLatestSix();
   }
+  createImages(promise);
+}
 
+function createImages(promise) {
   promise.then(function(artData) {
     var imgCollectionDiv = document.getElementById('imgCollection');
-    for(var i in artData){
-      var element = artData[i]
-      for(key in element){
-        var picData = element[key];
-        for(subKey in picData){
-          if(subKey == "fields"){
-            var imgId = picData[subKey].id.stringValue;
-            var liElem = document.createElement("li");
-            liElem.setAttribute("class", "landscape imageContainer");
-            liElem.onclick = function(event){ handleImgClick(event)};
-            liElem.id=imgId;
-            var artImage = document.createElement("img");
-            artImage.src = "https://instagram.com/p/" + imgId + "/media/?size=m";
-            liElem.appendChild(artImage);
-            imgCollectionDiv.appendChild(liElem);
-          }
-        }
-      }
+    while (imgCollectionDiv.firstChild) {
+      imgCollectionDiv.removeChild(imgCollectionDiv.firstChild);
     }
+    artData.forEach(element => {
+      if(element.document.fields && element.document.fields.id) {
+        var imgId = element.document.fields.id.stringValue;
+        var liElem = document.createElement("li");
+        liElem.setAttribute("class", "landscape imageContainer");
+        liElem.onclick = function(event){ handleImgClick(event)};
+        liElem.id=imgId;
+        var artImage = document.createElement("img");
+        artImage.src = "https://www.instagram.com/p/" + imgId + "/media/?size=m";
+        liElem.appendChild(artImage);
+        imgCollectionDiv.appendChild(liElem);
+      } else {
+        console.error("Could not parse object:");
+        console.log(element);
+      }
+    });
   })
   .catch(function(error) {
     console.log(error);
@@ -113,8 +110,7 @@ function displayImages (pageId) {
 }
 
 function queryLatestSix () {
-  return axios.post('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents:runQuery', 
-  { 
+  var query =  { 
     "structuredQuery": { 
       "orderBy": [{
             "field": {
@@ -126,7 +122,35 @@ function queryLatestSix () {
         "from": [ { "collectionId": "artCollection" } ],
         "limit":6
       } 
-    })
+    };
+  return execQuery(query);
+}
+
+function queryAll () {
+  return execQuery(getAllQuery());
+}
+
+function getAllQuery() {
+  return { 
+    "structuredQuery": { 
+      "orderBy": [{
+            "field": {
+                "fieldPath": "imageTakenDate"
+            },
+            "direction":"ASCENDING"
+            
+        }],
+        "from": [ { "collectionId": "artCollection" } ]
+      } 
+    };
+}
+
+function execQuery(query) {
+  return axios({
+    method:'post', 
+    url:'https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents:runQuery', 
+    data: query,
+    headers:{'Content-Type': 'application/json'}})
   .then(function (response) {
     return response.data;
   });
@@ -134,7 +158,7 @@ function queryLatestSix () {
 
 
 
-function query () {
+function queryX() {
   axios.post('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents:runQuery', 
   { 
     "structuredQuery": { 

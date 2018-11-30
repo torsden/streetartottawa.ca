@@ -106,7 +106,13 @@
     padding: 0px;
     max-width: 800px;
     height: 530px;
+    width: 100%;
 }
+
+.artImageExplorer .wrapper {
+    max-width: 1650px;
+
+} 
 .wrapper li {
     border: 1px solid #ccc;
 }
@@ -239,47 +245,21 @@ body {
     cursor: pointer;
 }
 
+.artImageExplorer{
+    display: flex;
+}
+
 .filters{
     display: flex;
-    justify-content: space-around;
-    width: 20%;
-    padding-left: 40%;
+    width: 100px;
+    flex-direction: column;
     font-family: 'Asap', sans-serif;
+    margin-left: 35px;
 }
 
-.all .a{
-    display: block;
-}
-
-.alla .a{
-    display: block;
-}
-
-.a {
-    display: none;
-}
-
-.all .b{
-    display: block;
-}
-
-.allb .b{
-    display: block;
-}
-
-.b {
-    display: none;
-}
-
-.all .c{
-    display: block;
-}
-
-.allc .c{
-    display: block;
-}
-
-.c{
-    display: none;
+.filter{
+    font-family: 'Asap', sans-serif;
+    padding: 5px;
+    margin-bottom: 15px
 }
 
