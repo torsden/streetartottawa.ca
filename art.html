@@ -3,13 +3,14 @@ layout: default
 id: art
 ---
 
-<div class="">
-    <h3 class="allArt" onclick="handleSelectorClick(event)">All Art</h3>
-
+<div class="artImageExplorer">
     <div class="filters">
-        <p class="byward" onclick="handleSelectorClick(event)" >Byward Market</p>
-        <p class="centerTown" onclick="handleSelectorClick(event)" >Center Town</p>
-        <p class="glebe" onclick="handleSelectorClick(event)"  >Glebe</p>
+        <p>Filter by:</p>
+        <button class="filter" onclick="handleSelectorClick(event)" data-filter="all">All Art</button>
+        <button class="filter" onclick="handleSelectorClick(event)" data-filter="byward">Byward Market</button>
+        <button class="filter" onclick="handleSelectorClick(event)" data-filter="center">Center Town</button>
+        <button class="filter" onclick="handleSelectorClick(event)" data-filter="glebe">Glebe</button>
+        <button class="filter" onclick="handleSelectorClick(event)" data-filter="old_south">Old Ottawa South</button>
     </div>
 
     <ul id="imgCollection" class="wrapper">
