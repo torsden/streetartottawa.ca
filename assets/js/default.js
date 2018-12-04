@@ -81,28 +81,38 @@ function displayImages (pageId) {
   createImages(promise);
 }
 
+class Art extends React.Component {
+  render() {
+      return React.createElement('li', {id: this.props.id, className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
+        React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
+      );
+  }
+}
+
+class ArtList extends React.Component {
+  render() {
+      return (
+        React.createElement(React.Fragment, null, 
+          this.props.artData.map(element => {
+            if(element.document && element.document.fields && element.document.fields.id) {
+              return React.createElement(Art, { key: element.document.fields.id.stringValue, id : element.document.fields.id.stringValue });
+            } else {
+              return null;
+            }
+          })
+        )
+      );
+  }
+}
+
+
 function createImages(promise) {
   promise.then(function(artData) {
     var imgCollectionDiv = document.getElementById('imgCollection');
-    while (imgCollectionDiv.firstChild) {
-      imgCollectionDiv.removeChild(imgCollectionDiv.firstChild);
-    }
-    artData.forEach(element => {
-      if(element.document.fields && element.document.fields.id) {
-        var imgId = element.document.fields.id.stringValue;
-        var liElem = document.createElement("li");
-        liElem.setAttribute("class", "landscape imageContainer");
-        liElem.onclick = function(event){ handleImgClick(event)};
-        liElem.id=imgId;
-        var artImage = document.createElement("img");
-        artImage.src = "https://www.instagram.com/p/" + imgId + "/media/?size=m";
-        liElem.appendChild(artImage);
-        imgCollectionDiv.appendChild(liElem);
-      } else {
-        console.error("Could not parse object:");
-        console.log(element);
-      }
-    });
+    ReactDOM.render(
+      React.createElement(ArtList,  { artData : artData }),
+      document.getElementById('imgCollection')
+    );
   })
   .catch(function(error) {
     console.log(error);
