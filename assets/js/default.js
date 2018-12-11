@@ -192,5 +192,32 @@ function queryX() {
   });
 }
 
+function initMap() {
+  var myLatLng = {lat: 45.337723, lng: -75.785092};
+  var otherLatLng = {lat: 45.335814, lng: -75.785043};
 
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: otherLatLng,
+    gestureHandling: 'cooperative'
+  });
 
+//   var marker = new google.maps.Marker({
+//     position: otherLatLng,
+//     map: map,
+//     title: 'Hello World!',
+//     icon : {
+//       path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+//       scale: 5,
+//       fillColor: 'red',
+//    		fillOpacity: 0.8,
+//       strokeWeight: 5,
+// 			strokeColor: 'gold'
+// },
+//   });
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
