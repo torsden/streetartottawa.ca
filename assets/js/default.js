@@ -71,17 +71,7 @@ function displayImages (pageId) {
 }
 
 
-function handleImgClick (event) {
-  var img = document.getElementById('dialogImage');
-  img.src = "https://instagram.com/p/" + event.currentTarget.id + "/media/?size=l";
 
-  var area = event.currentTarget.dataset.area;
-  var areaElem = document.getElementById('artPieceArea');
-  areaElem.textContent = area;
-  
-  var modal = document.getElementById('myModal');
-  modal.style.display = "block";
-}
 
 class ModalCanvas extends React.Component {
   constructor(props){
@@ -138,6 +128,19 @@ function createModal() {
 }
 
 
+function handleImgClick (event) {
+  var img = document.getElementById('dialogImage');
+  img.src = "https://instagram.com/p/" + event.currentTarget.id + "/media/?size=l";
+
+  // var area = event.currentTarget.dataset.area;
+  // var areaElem = document.getElementById('artPieceArea');
+  // areaElem.textContent = area;
+  
+  // var modal = document.getElementById('myModal');
+  // modal.style.display = "block";
+  createModal();
+
+}
 
 class Art extends React.Component {
   render() {
