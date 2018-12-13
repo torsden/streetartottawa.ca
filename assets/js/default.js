@@ -38,25 +38,11 @@ function getFilterQuery(filter) {
     };
 }
 
-function registerEvents () {
-  var modal = document.getElementById('myModal');
-
-  var spans = document.getElementsByClassName("close");
-  var span = spans[0];
-  span.onclick = function() {
-      modal.style.display = "none";
-  }
-  // window.onclick = function(event) {
-  //     if (event.target == modal) {
-  //         modal.style.display = "none";
-  //     }
-  // }
-}
-
 var artData;
 var queriedData;
-var area =[];
-var imageTakenDate =[];
+var area=[];
+var imageTakenDate=[];
+var modalDialog;
 
 function displayImages (pageId) {
  
@@ -71,75 +57,41 @@ function displayImages (pageId) {
 }
 
 
-
-
-class ModalCanvas extends React.Component {
-  constructor(props){
+class ModalDialog extends React.Component {
+  constructor(){
     super();
-    this.state = {open: props.open};
+    this.state = {isOpen: false, currentImageId: null};
   }
-  openModal() {
-    this.setState({open: true});
+  openModal(artId) {
+    this.setState({isOpen: true, currentImageId: artId});
   }
 
   closeModal(){
-    this.setState({open: false});
+    this.setState({isOpen: false});
   }
 
   render(){
-    return React.createElement(Modal, {open : this.state.open, handleClose : this.closeModal.bind(this)}, React.createElement('button', {onClick: this.openModal.bind(this)}, "Open"))}
+    return React.createElement(ModalContent, {isOpen : this.state.isOpen, currentImageId: this.state.currentImageId, handleClose: this.closeModal.bind(this)})}
 }
 
-const Modal = ({ handleClose, open, children}) => { 
-  const displayValue = open ? 'block' : 'none';
+const ModalContent = ({ handleClose, isOpen, currentImageId}) => { 
+  const displayValue = isOpen ? 'block' : 'none';
 
-  return React.createElement('div', {style: {display: displayValue, margin: "30px"}, className:"reactModal"}, React.createElement('button', {onClick: handleClose}, "Close"));
+  return React.createElement('div', {style: {display: displayValue, margin: "30px"}, className:"reactModal"}, React.createElement('img', {src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"}), React.createElement('button', {onClick: handleClose}, "Close"));
 };
 
-// const Modal = function({open, handleClose, children}){ 
-//   const displayValue;
-//    if (open) {
-//     displayValue = 'modal display-block';
-//    }  
-//    else {
-//     displayValue = 'modal display-none';
-//    }
-
-//   return React.createElement('div', {className: displayValue}, {children}, React.createElement('button', {onClick: closeModal, displayName: "Close"}));
-// };
-
-
-// function Modal({open, handleClose, children}){ 
-//   const displayValue;
-//    if (open) {
-//     displayValue = 'modal display-block';
-//    }  
-//    else {
-//     displayValue = 'modal display-none';
-//    }
-
-//   return React.createElement('div', {className: displayValue}, {children}, React.createElement('button', {onClick: closeModal, displayName: "Close"}));
-// };
-
 function createModal() {
-  const container = document.createElement('div');
-  document.body.appendChild(container);
-  ReactDOM.render(React.createElement(ModalCanvas, {open:true}), container);
+  var modalDiv = document.getElementById("modal")
+  return ReactDOM.render(React.createElement(ModalDialog), modalDiv);
 }
 
 
 function handleImgClick (event) {
-  var img = document.getElementById('dialogImage');
-  img.src = "https://instagram.com/p/" + event.currentTarget.id + "/media/?size=l";
-
-  // var area = event.currentTarget.dataset.area;
-  // var areaElem = document.getElementById('artPieceArea');
-  // areaElem.textContent = area;
+  if(!modalDialog) {
+    modalDialog = createModal();
+  }
+  modalDialog.openModal(event.currentTarget.id);
   
-  // var modal = document.getElementById('myModal');
-  // modal.style.display = "block";
-  createModal();
-
 }
 
 class Art extends React.Component {
@@ -169,7 +121,6 @@ class ArtList extends React.Component {
 
 function createImages(promise) {
   promise.then(function(artData) {
-    var imgCollectionDiv = document.getElementById('imgCollection');
     ReactDOM.render(
       React.createElement(ArtList,  { artData : artData }),
       document.getElementById('imgCollection')
