@@ -187,8 +187,8 @@ body {
     text-align: center;
     font-family: 'Asap', sans-serif;
 }
-.modal {
-    display: none;
+.reactModal {
+    /* display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -196,7 +196,16 @@ body {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color:transparent;
+    background-color:transparent; */
+
+    position: relative;
+    left: 23%;
+    top: -448pt;
+    width: 50%;
+    height: 400px;
+    background: lightgrey;
+
+
 }
 
 .modal-content {
