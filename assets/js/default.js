@@ -75,9 +75,13 @@ class ModalDialog extends React.Component {
 }
 
 const ModalContent = ({ handleClose, isOpen, currentImageId}) => { 
-  const displayValue = isOpen ? 'block' : 'none';
+  const displayValue = isOpen ? 'flex' : 'none';
 
-  return React.createElement('div', {style: {display: displayValue, margin: "30px"}, className:"reactModal"}, React.createElement('img', {src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"}), React.createElement('button', {onClick: handleClose}, "Close"));
+  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, 
+  React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"}),  
+  React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
+  React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."),
+  React.createElement('div', {className:"mapPlaceholder"}));
 };
 
 function createModal() {
