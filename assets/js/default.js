@@ -78,9 +78,12 @@ const ModalContent = ({ handleClose, isOpen, currentImageId}) => {
   const displayValue = isOpen ? 'flex' : 'none';
 
   return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, 
-  React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"}),  
+  React.createElement('div', {className:"topSection"}, 
+  React.createElement('div', {className:"leftSection"}, 
+  React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
+  React.createElement('div', {className:"rightSection"}, 
   React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
-  React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."),
+  React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."))),
   React.createElement('div', {className:"mapPlaceholder"}));
 };
 

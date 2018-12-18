@@ -189,30 +189,12 @@ body {
     font-family: 'Asap', sans-serif;
 }
 .reactModal {
-    /* display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color:transparent; */
-
-    /* position: absolute;
-    left: 18%;
-    top: 0px;
-    width: 65%;
-    height: 550px;
-    margin-top: 5%;
-    z-index: 1;
-    background: whitesmoke; */
-
     position: absolute;
     left: 18%;
-    flex-direction: column;
+    flex-direction: row;
     top: 0px;
     align-content: center;
+    flex-wrap: wrap;
     width: 65%;
     align-items: flex-start;
     margin-top: 5%;
@@ -221,35 +203,39 @@ body {
 }
 
 .closeButton {
-    /* float: right;
-    padding: 3px;
-    margin: 10px; */
     margin: 10px;
     order: 0;
     padding-right: 10px;
     align-self: flex-end;
+    margin-left: 495px;
 
 }
 
 .modalImage{
-    width: 42%;
     height: 337px;
-    order: 1;
-    align-self: center;
 }
 
 .imgDescription{
-    /* margin-left: 30px;
-    margin-top: 0px;
-    font-family: 'Asap', sans-serif;
-    font-size: 15px; */
-
     margin-top: 0px;
     font-family: 'Asap', sans-serif;
     font-size: 15px;
-    align-self: center;
+    align-self: flex-start;
+    margin: 90px;
     order: 1;
     padding-top: 15px;
+}
+
+.rightSection{
+}
+
+.leftSection{
+    margin-top: 34px;
+    margin-left: 42px;
+}
+
+.topSection{
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .mapPlaceholder{
@@ -258,7 +244,9 @@ body {
     background-color: pink;
     order: 2;
     align-self: center;
-    margin-bottom: 25px;
+    margin-left: 85px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .modal-content {
