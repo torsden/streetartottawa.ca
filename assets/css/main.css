@@ -199,6 +199,16 @@ body {
     background-color:transparent;
 }
 
+#map{
+    height: 215px;
+    width: 770px;
+    order: 2;
+    align-self: center;
+    margin-left: 85px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 .modal-content {
     background-color: #fefefe;
     margin: 4% auto;

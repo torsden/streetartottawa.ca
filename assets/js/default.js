@@ -81,6 +81,55 @@ function displayImages (pageId) {
   createImages(promise);
 }
 
+<<<<<<< Updated upstream
+=======
+
+class ModalDialog extends React.Component {
+  constructor(){
+    super();
+    this.state = {isOpen: false, currentImageId: null};
+  }
+  openModal(artId) {
+    this.setState({isOpen: true, currentImageId: artId});
+  }
+
+  closeModal(){
+    this.setState({isOpen: false});
+  }
+
+  render(){
+    return React.createElement(ModalContent, {isOpen : this.state.isOpen, currentImageId: this.state.currentImageId, handleClose: this.closeModal.bind(this)})}
+}
+
+const ModalContent = ({ handleClose, isOpen, currentImageId}) => { 
+  const displayValue = isOpen ? 'flex' : 'none';
+
+  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, 
+  React.createElement('div', {className:"topSection"}, 
+  React.createElement('div', {className:"leftSection"}, 
+  React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
+  React.createElement('div', {className:"rightSection"}, 
+  React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
+  React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."))),
+  React.createElement('div', {id:"map"}))
+};
+
+function createModal() {
+  var modalDiv = document.getElementById("modal")
+  return ReactDOM.render(React.createElement(ModalDialog), modalDiv);
+}
+
+
+function handleImgClick (event) {
+  if(!modalDialog) {
+    modalDialog = createModal();
+    initMap();
+  }
+  modalDialog.openModal(event.currentTarget.id);
+  initMap();
+}
+
+>>>>>>> Stashed changes
 class Art extends React.Component {
   render() {
       return React.createElement('li', {id: this.props.id, className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
@@ -88,6 +137,8 @@ class Art extends React.Component {
       );
   }
 }
+
+
 
 class ArtList extends React.Component {
   render() {
@@ -202,6 +253,19 @@ function initMap() {
     gestureHandling: 'cooperative'
   });
 
+<<<<<<< Updated upstream
+=======
+function initMap() {
+  var myLatLng = {lat: 45.337723, lng: -75.785092};
+  var otherLatLng = {lat: 45.335814, lng: -75.785043};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: otherLatLng,
+    gestureHandling: 'cooperative'
+  });
+
+>>>>>>> Stashed changes
 //   var marker = new google.maps.Marker({
 //     position: otherLatLng,
 //     map: map,
@@ -220,4 +284,8 @@ function initMap() {
     map: map,
     title: 'Hello World!'
   });
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
