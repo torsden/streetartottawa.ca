@@ -68,6 +68,7 @@ var artData;
 var queriedData;
 var area =[];
 var imageTakenDate =[];
+var modalDialog;
 
 function displayImages (pageId) {
  
@@ -81,8 +82,6 @@ function displayImages (pageId) {
   createImages(promise);
 }
 
-<<<<<<< Updated upstream
-=======
 
 class ModalDialog extends React.Component {
   constructor(){
@@ -111,7 +110,7 @@ const ModalContent = ({ handleClose, isOpen, currentImageId}) => {
   React.createElement('div', {className:"rightSection"}, 
   React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
   React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."))),
-  React.createElement('div', {id:"map"}))
+  React.createElement('div', {id:"map"}));
 };
 
 function createModal() {
@@ -123,16 +122,18 @@ function createModal() {
 function handleImgClick (event) {
   if(!modalDialog) {
     modalDialog = createModal();
-    initMap();
   }
   modalDialog.openModal(event.currentTarget.id);
-  initMap();
+  initMap(parseFloat(event.currentTarget.dataset.lat), parseFloat(event.currentTarget.dataset.long));
+  
 }
 
->>>>>>> Stashed changes
 class Art extends React.Component {
   render() {
-      return React.createElement('li', {id: this.props.id, className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
+      return React.createElement('li', {id: this.props.id, 
+      'data-long': this.props.coordinates.longitude,
+      'data-lat': this.props.coordinates.latitude,
+      className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
         React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
       );
   }
@@ -146,7 +147,12 @@ class ArtList extends React.Component {
         React.createElement(React.Fragment, null, 
           this.props.artData.map(element => {
             if(element.document && element.document.fields && element.document.fields.id) {
-              return React.createElement(Art, { key: element.document.fields.id.stringValue, id : element.document.fields.id.stringValue });
+              return React.createElement(Art, {
+                key: element.document.fields.id.stringValue, 
+                id : element.document.fields.id.stringValue, 
+                coordinates: {latitude: element.document.fields.coordinates?element.document.fields.coordinates.geoPointValue.latitude:0, 
+                            longitude: element.document.fields.coordinates?element.document.fields.coordinates.geoPointValue.longitude:0} 
+                });
             } else {
               return null;
             }
@@ -243,32 +249,23 @@ function queryX() {
   });
 }
 
-function initMap() {
-  var myLatLng = {lat: 45.337723, lng: -75.785092};
-  var otherLatLng = {lat: 45.335814, lng: -75.785043};
+function initMap(lat, lng) {
+  var eternalFlame = {lat: 45.423730, lng: -75.698700};  
+  var artCoords = {lat: lat, lng: lng};
+  if(lat === 0 && lng === 0){
+    artCoords = eternalFlame;
+  }
+
+
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
-    center: otherLatLng,
+    center: artCoords,
     gestureHandling: 'cooperative'
   });
 
-<<<<<<< Updated upstream
-=======
-function initMap() {
-  var myLatLng = {lat: 45.337723, lng: -75.785092};
-  var otherLatLng = {lat: 45.335814, lng: -75.785043};
-
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
-    center: otherLatLng,
-    gestureHandling: 'cooperative'
-  });
-
->>>>>>> Stashed changes
 //   var marker = new google.maps.Marker({
 //     position: otherLatLng,
-//     map: map,
 //     title: 'Hello World!',
 //     icon : {
 //       path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
@@ -280,12 +277,8 @@ function initMap() {
 // },
 //   });
   var marker = new google.maps.Marker({
-    position: myLatLng,
+    position: artCoords,
     map: map,
-    title: 'Hello World!'
+    title: 'Art location'
   });
-<<<<<<< Updated upstream
 }
-=======
-}
->>>>>>> Stashed changes
