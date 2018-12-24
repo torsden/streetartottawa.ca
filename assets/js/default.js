@@ -1,3 +1,10 @@
+
+var artData;
+var queriedData;
+var area =[];
+var imageTakenDate =[];
+var modalDialog;
+
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
   var currentScrollPos = window.pageYOffset;
@@ -12,13 +19,6 @@ window.onscroll = function() {
 function handleImgClick (event) {
   var img = document.getElementById('dialogImage');
   img.src = "https://instagram.com/p/" + event.currentTarget.id + "/media/?size=l";
-
-  var area = event.currentTarget.dataset.area;
-  var areaElem = document.getElementById('artPieceArea');
-  areaElem.textContent = area;
-  
-  var modal = document.getElementById('myModal');
-  modal.style.display = "block";
 }
 
 function handleSelectorClick (event) {
@@ -29,7 +29,6 @@ function handleSelectorClick (event) {
   } else {
     query = getFilterQuery(area.filter);
   }
-  
   createImages(execQuery(query));
 }
 
@@ -49,31 +48,8 @@ function getFilterQuery(filter) {
     };
 }
 
-function registerEvents () {
-  var modal = document.getElementById('myModal');
-
-  var spans = document.getElementsByClassName("close");
-  var span = spans[0];
-  span.onclick = function() {
-      modal.style.display = "none";
-  }
-  window.onclick = function(event) {
-      if (event.target == modal) {
-          modal.style.display = "none";
-      }
-  }
-}
-
-var artData;
-var queriedData;
-var area =[];
-var imageTakenDate =[];
-var modalDialog;
-
 function displayImages (pageId) {
- 
   var promise;
-
   if(pageId === "art") {
     promise = queryAll();
   } else {
@@ -81,7 +57,6 @@ function displayImages (pageId) {
   }
   createImages(promise);
 }
-
 
 class ModalDialog extends React.Component {
   constructor(){
@@ -103,8 +78,7 @@ class ModalDialog extends React.Component {
 const ModalContent = ({ handleClose, isOpen, currentImageId}) => { 
   const displayValue = isOpen ? 'flex' : 'none';
 
-  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, 
-  React.createElement('div', {className:"topSection"}, 
+  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, React.createElement('div', {className:"topSection"}, 
   React.createElement('div', {className:"leftSection"}, 
   React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
   React.createElement('div', {className:"rightSection"}, 
@@ -118,14 +92,12 @@ function createModal() {
   return ReactDOM.render(React.createElement(ModalDialog), modalDiv);
 }
 
-
 function handleImgClick (event) {
   if(!modalDialog) {
     modalDialog = createModal();
   }
   modalDialog.openModal(event.currentTarget.id);
   initMap(parseFloat(event.currentTarget.dataset.lat), parseFloat(event.currentTarget.dataset.long));
-  
 }
 
 class Art extends React.Component {
@@ -133,13 +105,11 @@ class Art extends React.Component {
       return React.createElement('li', {id: this.props.id, 
       'data-long': this.props.coordinates.longitude,
       'data-lat': this.props.coordinates.latitude,
-      className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
-        React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
+       className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
+       React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
       );
   }
 }
-
-
 
 class ArtList extends React.Component {
   render() {
@@ -161,7 +131,6 @@ class ArtList extends React.Component {
       );
   }
 }
-
 
 function createImages(promise) {
   promise.then(function(artData) {
@@ -223,8 +192,6 @@ function execQuery(query) {
   });
 }
 
-
-
 function queryX() {
   axios.post('https://firestore.googleapis.com/v1beta1/projects/street-art-ottawa/databases/(default)/documents:runQuery', 
   { 
@@ -255,8 +222,6 @@ function initMap(lat, lng) {
   if(lat === 0 && lng === 0){
     artCoords = eternalFlame;
   }
-
-
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 14,
