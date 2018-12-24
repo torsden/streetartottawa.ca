@@ -61,10 +61,10 @@ function displayImages (pageId) {
 class ModalDialog extends React.Component {
   constructor(){
     super();
-    this.state = {isOpen: false, currentImageId: null};
+    this.state = {isOpen: false, currentImageId: null, description: null};
   }
-  openModal(artId) {
-    this.setState({isOpen: true, currentImageId: artId});
+  openModal(artId, description) {
+    this.setState({isOpen: true, currentImageId: artId, description: description});
   }
 
   closeModal(){
@@ -72,10 +72,13 @@ class ModalDialog extends React.Component {
   }
 
   render(){
-    return React.createElement(ModalContent, {isOpen : this.state.isOpen, currentImageId: this.state.currentImageId, handleClose: this.closeModal.bind(this)})}
+    return React.createElement(ModalContent, {isOpen : this.state.isOpen, 
+                                                      currentImageId: this.state.currentImageId,
+                                                      description: this.state.description, 
+                                                      handleClose: this.closeModal.bind(this)})}
 }
 
-const ModalContent = ({ handleClose, isOpen, currentImageId}) => { 
+const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => { 
   const displayValue = isOpen ? 'flex' : 'none';
 
   return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, React.createElement('div', {className:"topSection"}, 
@@ -83,7 +86,7 @@ const ModalContent = ({ handleClose, isOpen, currentImageId}) => {
   React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
   React.createElement('div', {className:"rightSection"}, 
   React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
-  React.createElement('p', {className:"imgDescription"}, "This art piece was found in Byward Market, on Dalhousie Street. It was created by Alex Keith in honour of fish."))),
+  React.createElement('p', {className:"imgDescription"}, description ))),
   React.createElement('div', {id:"map"}));
 };
 
@@ -96,7 +99,7 @@ function handleImgClick (event) {
   if(!modalDialog) {
     modalDialog = createModal();
   }
-  modalDialog.openModal(event.currentTarget.id);
+  modalDialog.openModal(event.currentTarget.id, event.currentTarget.dataset.description);
   initMap(parseFloat(event.currentTarget.dataset.lat), parseFloat(event.currentTarget.dataset.long));
 }
 
@@ -105,6 +108,7 @@ class Art extends React.Component {
       return React.createElement('li', {id: this.props.id, 
       'data-long': this.props.coordinates.longitude,
       'data-lat': this.props.coordinates.latitude,
+      'data-description': this.props.description,
        className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
        React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
       );
@@ -121,7 +125,8 @@ class ArtList extends React.Component {
                 key: element.document.fields.id.stringValue, 
                 id : element.document.fields.id.stringValue, 
                 coordinates: {latitude: element.document.fields.coordinates?element.document.fields.coordinates.geoPointValue.latitude:0, 
-                            longitude: element.document.fields.coordinates?element.document.fields.coordinates.geoPointValue.longitude:0} 
+                            longitude: element.document.fields.coordinates?element.document.fields.coordinates.geoPointValue.longitude:0},
+                description: element.document.fields.description?element.document.fields.description.stringValue:null             
                 });
             } else {
               return null;
