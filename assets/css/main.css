@@ -238,7 +238,7 @@ body {
     flex-wrap: nowrap;
 }
 
-.mapPlaceholder{
+#map{
     height: 215px;
     width: 770px;
     background-color: pink;
@@ -249,12 +249,6 @@ body {
     margin-bottom: 20px;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 4% auto;
-    border: 1px solid #888;
-    width: 70%;
-}
 
 #dialogImage {
     width: 60%;
@@ -312,4 +306,3 @@ body {
     padding: 5px;
     margin-bottom: 15px
 }
-
