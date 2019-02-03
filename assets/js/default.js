@@ -71,6 +71,19 @@ class ModalDialog extends React.Component {
     this.setState({isOpen: false});
   }
 
+  escFunction(event){
+    if(event.keyCode === 27) {
+      this.closeModal();
+    }
+  }
+
+  componentDidMount(){
+    document.addEventListener("keydown", this.escFunction.bind(this), false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", this.escFunction.bind(this), false);
+  }
+
   render(){
     return React.createElement(ModalContent, {isOpen : this.state.isOpen, 
                                                       currentImageId: this.state.currentImageId,
@@ -81,13 +94,15 @@ class ModalDialog extends React.Component {
 const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => { 
   const displayValue = isOpen ? 'flex' : 'none';
 
-  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"}, React.createElement('div', {className:"topSection"}, 
-  React.createElement('div', {className:"leftSection"}, 
-  React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
-  React.createElement('div', {className:"rightSection"}, 
-  React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
-  React.createElement('p', {className:"imgDescription"}, description ))),
-  React.createElement('div', {id:"map"}));
+  return React.createElement('div', {style: {display: displayValue}, className:"reactModal"},
+    React.createElement('div', {className:"topSection"}, 
+    React.createElement('div', {className:"leftSection"}, 
+    React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
+    React.createElement('div', {className:"rightSection"}, 
+    React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
+    React.createElement('p', {className:"imgDescription"}, description ))),
+    React.createElement('div', {id:"map"})
+  );
 };
 
 function createModal() {
@@ -96,11 +111,14 @@ function createModal() {
 }
 
 function handleImgClick (event) {
+  showModal(event.currentTarget.id, event.currentTarget.dataset.description, event.currentTarget.dataset.lat, event.currentTarget.dataset.lng);
+}
+function showModal(id, description, lat, lng) {
   if(!modalDialog) {
     modalDialog = createModal();
   }
-  modalDialog.openModal(event.currentTarget.id, event.currentTarget.dataset.description);
-  initMap(parseFloat(event.currentTarget.dataset.lat), parseFloat(event.currentTarget.dataset.long));
+  modalDialog.openModal(id, description);
+  initMap(parseFloat(lat), parseFloat(lng));
 }
 
 class Art extends React.Component {
@@ -221,6 +239,65 @@ function queryX() {
   });
 }
 
+
+function initMapOfAllArt() {
+  var ottawaCenter = {lat: 45.410006, lng: -75.714202}; 
+
+  var map = new google.maps.Map(document.getElementById('mapOfAllArt'), {
+    zoom: 12,
+    maxZoom: 16,
+    center: ottawaCenter,
+    gestureHandling: 'cooperative',
+    disableDefaultUI: true, 
+    styles: [{"featureType":"water","elementType":"geometry","stylers":[{"color":"#e9e9e9"},{"lightness":17}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffffff"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#ffffff"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#ffffff"},{"lightness":16}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#f5f5f5"},{"lightness":21}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#dedede"},{"lightness":21}]},{"elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#ffffff"},{"lightness":16}]},{"elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#333333"},{"lightness":40}]},{"elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#f2f2f2"},{"lightness":19}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#fefefe"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#fefefe"},{"lightness":17},{"weight":1.2}]}]
+  });
+
+  queryAll().then(function(artData) {
+    var markers =[];
+    artData.map(element => {
+      if(element.document && element.document.fields && element.document.fields.id) {
+        if (element.document.fields.coordinates) {
+          // key: element.document.fields.id.stringValue, 
+          // id : element.document.fields.id.stringValue, 
+          var coords = {
+            lat:  parseFloat(element.document.fields.coordinates.geoPointValue.latitude), 
+            lng:  parseFloat(element.document.fields.coordinates.geoPointValue.longitude)
+          };
+          var marker = new google.maps.Marker({
+            position: coords,
+            title: 'Art location',
+            map: map,
+            icon : {
+              path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+              scale: 6,
+              fillColor: 'gray',
+              fillOpacity: 1,
+              strokeWeight: 2,
+              strokeColor: 'black'
+            }
+          });
+          marker.setValues({id:element.document.fields.id.stringValue, description:element.document.fields.description?element.document.fields.description.stringValue:null});
+          google.maps.event.addListener(marker, "click", function(event) {
+            event.cancelBubble = !0,
+            event.stopPropagation && event.stopPropagation(),
+            showModal(this.id, this.description, event.latLng.lat(), event.latLng.lng());
+        }),
+          markers.push(marker);
+        }
+      }
+    })
+    var markerClusterOptions = {
+      maxZoom:16,
+
+      styles:[{"anchorIcon":[0,0],"anchorText":[0,0],"fontFamily":"inherit","fontWeight":"normal","height":46,"textColor":"black","textSize":20,
+        "url":"assets/circle.svg",
+        "width":46}]
+      };
+    
+    var markerCluster = new MarkerClusterer(map, markers, markerClusterOptions);
+  })
+}
+
 function initMap(lat, lng) {
   var eternalFlame = {lat: 45.423730, lng: -75.698700};  
   var artCoords = {lat: lat, lng: lng};
@@ -229,23 +306,11 @@ function initMap(lat, lng) {
   }
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
+    zoom: 16,
     center: artCoords,
     gestureHandling: 'cooperative'
   });
 
-//   var marker = new google.maps.Marker({
-//     position: otherLatLng,
-//     title: 'Hello World!',
-//     icon : {
-//       path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-//       scale: 5,
-//       fillColor: 'red',
-//    		fillOpacity: 0.8,
-//       strokeWeight: 5,
-// 			strokeColor: 'gold'
-// },
-//   });
   var marker = new google.maps.Marker({
     position: artCoords,
     map: map,
