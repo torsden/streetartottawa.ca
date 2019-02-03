@@ -16,6 +16,7 @@ window.onscroll = function() {
   prevScrollpos = currentScrollPos;
 }
 
+
 function handleImgClick (event) {
   var img = document.getElementById('dialogImage');
   img.src = "https://instagram.com/p/" + event.currentTarget.id + "/media/?size=l";
@@ -57,6 +58,7 @@ function displayImages (pageId) {
   }
   createImages(promise);
 }
+
 
 class ModalDialog extends React.Component {
   constructor(){
@@ -110,6 +112,7 @@ function createModal() {
   return ReactDOM.render(React.createElement(ModalDialog), modalDiv);
 }
 
+
 function handleImgClick (event) {
   showModal(event.currentTarget.id, event.currentTarget.dataset.description, event.currentTarget.dataset.lat, event.currentTarget.dataset.lng);
 }
@@ -157,7 +160,6 @@ class ArtList extends React.Component {
 
 function createImages(promise) {
   promise.then(function(artData) {
-    var imgCollectionDiv = document.getElementById('imgCollection');
     ReactDOM.render(
       React.createElement(ArtList,  { artData : artData }),
       document.getElementById('imgCollection')
