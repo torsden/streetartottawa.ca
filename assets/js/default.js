@@ -109,7 +109,7 @@ const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => {
   return React.createElement('div', {style: {display: displayValue}, className:"reactModal"},
     React.createElement('div', {className:"topSection"}, 
     React.createElement('div', {className:"leftSection"}, 
-    React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=m"})), 
+    React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=l"})), 
     React.createElement('div', {className:"rightSection"}, 
     React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
     React.createElement('p', {className:"imgDescription"}, description ))),
