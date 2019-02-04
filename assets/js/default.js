@@ -293,6 +293,7 @@ function initMapOfAllArt() {
         }
       })
       var markerClusterOptions = {
+        gridSize: 17,
         maxZoom: 18,
         styles:[{"anchorIcon":[0,0],"anchorText":[0,0],"fontFamily":"inherit","fontWeight":"normal","height":46,"textColor":"black","textSize":20,
           "url":"assets/circle.svg",
