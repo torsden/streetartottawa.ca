@@ -111,7 +111,8 @@ const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => {
     React.createElement('div', {className:"leftSection"}, 
     React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=l"})), 
     React.createElement('div', {className:"rightSection"}, 
-    React.createElement('button', {onClick: handleClose, className: "closeButton"}, "Close"), 
+    React.createElement('button', {onClick: handleClose, className: "closeButton"}, 
+    React.createElement('i', {className: "fas fa-times", elementType: "font-awesome"})), 
     React.createElement('p', {className:"imgDescription"}, description ))),
     React.createElement('div', {id:"map"})
   );

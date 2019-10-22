@@ -30,7 +30,7 @@
     margin-top: 0px;
     padding: 0;
     overflow: hidden;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
     position: fixed;
     top: 0;
     left: 0;
@@ -55,37 +55,41 @@
 .menuItem {
     float: left;
     display: block;
-    color: black;
+    color: #40709e;
     text-align: center;
     padding: 15px;
     text-decoration: none;
     font-weight: bold;
     font-family: 'Asap', sans-serif;
+    font-weight: 900;
+
 }
 .menuItem:hover {
     float: left;
     display: block;
-    color: black;
+    color: #40709e;
     text-align: center;
     padding: 15px;
     text-decoration: none;
     font-family: 'Asap', sans-serif;
     font-size: 16px;
+    font-weight: 900;
 }
 .menuItem:visited {
     float: left;
     display: block;
-    color: black;
+    color: #40709e;
     text-align: center;
     padding: 15px;
     text-decoration: none;
     font-family: 'Asap', sans-serif;
     font-size: 16px;
+    font-weight: 900;
 }
 .menuLogo {
     float: right;
     display: block;
-    color: black;
+    color: #40709e;
     text-align: justify;
     padding: 15px;
     text-decoration: none;
@@ -93,22 +97,29 @@
     font-weight: bold;
     padding-right: 40px;
     font-size: 16px;
+    font-weight: 900;
 }
 .menuItem:visited{
-    color: black;
+    color: #40709e;
+    font-weight: 900;
 }
 .wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-    grid-gap: 23px;
-    grid-auto-flow: dense;
+    display: flex;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    /* display: grid; */
+    /* grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); */
+    /* grid-gap: 23px; */
+    /* grid-auto-flow: dense; */
     list-style: none;
-    margin: 1em auto;
+    /* margin: 1em auto; */
     padding: 0px;
-    max-width: 800px;
-    height: 530px;
-    width: 100%;
+    max-width: 99%;
+    height: 526px;
+    flex-wrap: wrap;
 }
+
 
 .artImageExplorer .wrapper {
     max-width: 1650px;
@@ -118,10 +129,10 @@
     border: 1px solid #ccc;
 }
 .wrapper li.landscape {
-    grid-column-end: span 2;
-    height: 250px;
-    width: 250px;
-    margin: auto;
+       height: 250px;
+       width: 250px;
+       margin: auto;
+       margin-bottom: 20px;
 }
 .wrapper li.landscapeText{
     grid-column-end: span 2;
@@ -176,7 +187,7 @@ a:visited {
     margin: 0 auto;
     text-align: center;
     color: white;
-    background-color: black;
+    background-color: #40709e;
     font-family: 'Asap', sans-serif;
     padding: 10px;
     font-size: 15px;
@@ -188,14 +199,23 @@ body {
 
 
 .slogan {
-    font-family: 'Poppins', sans-serif;;
-    margin: 50px 0 80px 0;
+    font-family: 'Poppins', sans-serif;
+    margin: 36px 0 36px 0;
     padding: 0;
-    /* text-transform: uppercase; */
-	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-    font-size: 4vw;
+    background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 32px;
+}
+
+#mapOfAllArt {
+    margin-top: 17px;
+    border: 1px solid rgb(204, 204, 204);
+    height: 526px;
+    position: relative;
+    overflow: hidden;
+    float: right;
+    width: 92%;
 }
     
 .allArt {
@@ -204,13 +224,12 @@ body {
 }
 .reactModal {
     position: absolute;
-    left: 18%;
+    left: 20%;
     flex-direction: row;
-    top: 0px;
     align-content: center;
     flex-wrap: wrap;
-    width: 65%;
-    align-items: flex-start;
+    width: 60%;
+    align-items: center;
     margin-top: 5%;
     z-index: 1;
     background: whitesmoke;
@@ -220,13 +239,18 @@ body {
     margin: 10px;
     order: 0;
     padding-right: 10px;
-    align-self: flex-end;
-    margin-left: 495px;
+    margin-right: 20px;
+    /* align-self: baseline; */
+    /* margin-left: 495px; */
+    /* position: absolute; */
+    /* display: flex; */
+    float: right;
 
 }
 
 .modalImage{
-    height: 1000px;
+    width: 100%;
+    position: relative;
 }
 
 .imgDescription{
@@ -240,16 +264,23 @@ body {
 }
 
 .rightSection{
+    position: relative;
+    justify-content: right;
+    margin-left: auto;
+    width: 100%;
 }
 
 .leftSection{
     margin-top: 34px;
     margin-left: 42px;
+    position: relative;
+    width: 100%;
 }
 
 .topSection{
     display: flex;
     flex-wrap: nowrap;
+    width: 100%;
 }
 
 #map{
@@ -261,8 +292,10 @@ body {
     margin-left: 85px;
     margin-top: 20px;
     margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 76px;
 }
-
 
 #dialogImage {
     width: 60%;
@@ -312,11 +345,19 @@ body {
     width: 100px;
     flex-direction: column;
     font-family: 'Asap', sans-serif;
-    margin-left: 35px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-top: 16px;
+    width: 14%;
+    
 }
 
 .filter{
     font-family: 'Asap', sans-serif;
     padding: 5px;
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    background: #ffffff;
+    border: white;
+    font-size: 16px;
+    color: #406f9e;
 }
