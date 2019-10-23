@@ -105,7 +105,6 @@
 }
 .wrapper {
     display: flex;
-    display: flex;
     justify-content: flex-start;
     margin: 20px;
     list-style: none;
@@ -113,6 +112,7 @@
     width: auto;
     flex-wrap: wrap;
 }
+
 
 .artImageExplorer .wrapper {
     max-width: 1650px;
