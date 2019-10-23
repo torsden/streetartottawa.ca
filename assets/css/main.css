@@ -106,20 +106,13 @@
 .wrapper {
     display: flex;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin: 20px;
-    /* display: grid; */
-    /* grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); */
-    /* grid-gap: 23px; */
-    /* grid-auto-flow: dense; */
     list-style: none;
-    /* margin: 1em auto; */
-    padding: 0px;
-    max-width: 99%;
-    height: 526px;
+    height: auto;
+    width: auto;
     flex-wrap: wrap;
 }
-
 
 .artImageExplorer .wrapper {
     max-width: 1650px;
@@ -130,10 +123,12 @@
 }
 .wrapper li.landscape {
        height: 250px;
-       width: 250px;
-       margin: auto;
+       width: auto;
+       margin-right: 20px;
        margin-bottom: 20px;
+       flex-basis: 250px;
 }
+
 .wrapper li.landscapeText{
     grid-column-end: span 2;
 }
@@ -361,3 +356,38 @@ body {
     font-size: 16px;
     color: #406f9e;
 }
+
+.aboutText {
+    border: solid 2px #406f9e;
+    background: #406f9e;
+    color: white;
+    padding: 50px;
+    margin: 60px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Asap', sans-serif;
+}
+
+.animatedDiv {
+    padding-left: 300px;
+    padding-right: 300px;
+    font-size: 5px;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'Asap', sans-serif;
+    background-color: white;
+    position: relative;
+    -webkit-animation-name: example;
+    -webkit-animation-duration: 4s;
+    animation-name: example;
+    animation-duration: 10s;
+}
+
+@keyframes example {
+    0%   {color:#406f9e;}
+    25%  {color:#30CFD0;}
+    50%  {color:#406f9e;}
+    75%  {color:#30CFD0;}
+    100% {color:#406f9e;}
+  }
