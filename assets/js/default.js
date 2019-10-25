@@ -107,14 +107,15 @@ const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => {
   const displayValue = isOpen ? 'flex' : 'none';
 
   return React.createElement('div', {style: {display: displayValue}, className:"reactModal"},
+    React.createElement('div', {className:"modalContent"}, 
     React.createElement('div', {className:"topSection"}, 
     React.createElement('div', {className:"leftSection"}, 
     React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=l"})), 
     React.createElement('div', {className:"rightSection"}, 
     React.createElement('button', {onClick: handleClose, className: "closeButton"}, 
-    React.createElement('i', {className: "fas fa-times", elementType: "font-awesome"})), 
-    React.createElement('p', {className:"imgDescription"}, description ))),
-    React.createElement('div', {id:"map"})
+    React.createElement('p', {className:"closeIcon"}, "x")), 
+    React.createElement('div', {id:"map"}))),
+    React.createElement('p', {className:"imgDescription"}, description ))
   );
 };
 

@@ -110,7 +110,7 @@
     margin: 20px;
     list-style: none;
     height: auto;
-    width: auto;
+    width: 100%;
     flex-wrap: wrap;
 }
 
@@ -218,7 +218,18 @@ body {
     font-family: 'Asap', sans-serif;
 }
 .reactModal {
-    position: absolute;
+    display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
+    /* position: absolute;
     left: 20%;
     flex-direction: row;
     align-content: center;
@@ -227,24 +238,31 @@ body {
     align-items: center;
     margin-top: 5%;
     z-index: 1;
-    background: whitesmoke;
+    background: whitesmoke; */
 }
 
-.closeButton {
-    margin: 10px;
-    order: 0;
-    padding-right: 10px;
-    margin-right: 20px;
-    /* align-self: baseline; */
-    /* margin-left: 495px; */
-    /* position: absolute; */
-    /* display: flex; */
-    float: right;
+.modalContent {
+    background-color: #fefefe;
+    margin: 8% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    height: 70%;
+}
 
+
+.closeButton {
+    order: 0;
+    float: right;
+    padding: 1px;
+}
+
+.closeIcon {
+    margin: 0px;
 }
 
 .modalImage{
-    width: 100%;
+    width: 80%;
     position: relative;
 }
 
@@ -253,7 +271,8 @@ body {
     font-family: 'Asap', sans-serif;
     font-size: 15px;
     align-self: flex-start;
-    margin: 90px;
+    margin: 30px;
+    background: yellowgreen;
     order: 1;
     padding-top: 15px;
 }
@@ -266,10 +285,10 @@ body {
 }
 
 .leftSection{
-    margin-top: 34px;
+    margin-top: 35px;
     margin-left: 42px;
     position: relative;
-    width: 100%;
+    width: 80%;
 }
 
 .topSection{
@@ -279,17 +298,17 @@ body {
 }
 
 #map{
-    height: 215px;
-    width: 770px;
+    height: 92%;
+    width: 89%;
     background-color: pink;
     order: 2;
     align-self: center;
-    margin-left: 85px;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-top: 35px;
+    /* margin-bottom: 20px; */
     position: relative;
     overflow: hidden;
-    margin-right: 76px;
+    margin-right: 30px;
 }
 
 #dialogImage {
@@ -355,6 +374,7 @@ body {
     border: white;
     font-size: 16px;
     color: #406f9e;
+    border-bottom: solid #30CFD0 2px;
 }
 
 .aboutText {
@@ -391,3 +411,6 @@ body {
     75%  {color:#30CFD0;}
     100% {color:#406f9e;}
   }
+
+
+
