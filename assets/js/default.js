@@ -110,7 +110,7 @@ const ModalContent = ({ handleClose, isOpen, currentImageId, description}) => {
     React.createElement('div', {className:"modalContent"}, 
     React.createElement('div', {className:"topSection"}, 
     React.createElement('div', {className:"leftSection"}, 
-    React.createElement('img', {className: "modalImage", src: "https://www.instagram.com/p/" + currentImageId + "/media/?size=l"})), 
+    React.createElement('img', {className: "modalImage", src: "assets/art/" + currentImageId + ".jpg"})), 
     React.createElement('div', {className:"rightSection"}, 
     React.createElement('button', {onClick: handleClose, className: "closeButton"}, 
     React.createElement('p', {className:"closeIcon"}, "x")), 
@@ -144,7 +144,7 @@ class Art extends React.Component {
       'data-lat': this.props.coordinates.latitude,
       'data-description': this.props.description,
        className: "landscape imageContainer", onClick: function(event){ handleImgClick(event)}},
-       React.createElement('img', {src: "https://www.instagram.com/p/" + this.props.id + "/media/?size=m"})
+       React.createElement('img', {src: "assets/art/" + this.props.id + ".jpg"})
       );
   }
 }
